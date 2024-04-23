@@ -1,12 +1,17 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import MegaShop from '../assets/MegaShop.png';
 
 const Header = () => {
   return (
     <header>
       <Navbar expand="lg" className="bg-dark" variant="dark" collapseOnSelect>
         <Container>
-          <Navbar.Brand href="/">Megashop</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img src={MegaShop} alt="logo" />
+            Megashop
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
             id="basic-navbar-nav"
@@ -14,11 +19,12 @@ const Header = () => {
           >
             <Nav className="ml-auto">
               <Nav.Link href="/cart">
-                <i className="fas fa-shopping-cart"></i>Cart
+                <FaShoppingCart />
+                Cart
               </Nav.Link>
               <Nav.Link href="/login">
-                {' '}
-                <i className="fas fa-user"></i>Sign In
+                <FaUser />
+                Sign In
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
