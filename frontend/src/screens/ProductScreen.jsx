@@ -1,12 +1,22 @@
 //This Screen shows the product details. This is the product details Page
+import { useState, useEffect } from 'react'; // Import the useState and useEffect hooks from React
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom'; // Import the Link component bc we are going to use it to navigate to the product details page
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'; // Import the Row, Col, Image, ListGroup, Card, and Button components from react-bootstrap
-import products from '../products';
+import axios from 'axios'; // Import the axios library
 import Rating from '../components/Rating'; // Import the Rating component
+
 const ProductScreen = () => {
+  const [product, setProduct] = useState({}); // Create a state for the product and set it to an empty object
   const { id: productId } = useParams(); // Get the id from the URL
-  const product = products.find((product) => product._id === productId); // Find the product by id
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${productId}`); // Fetch the product from the API
+      setProduct(data); // Set the product state to the fetched product
+    };
+
+    fetchProduct();
+  }, [productId]);
 
   return (
     <>
